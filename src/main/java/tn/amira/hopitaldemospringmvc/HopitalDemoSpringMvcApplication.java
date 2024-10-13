@@ -28,6 +28,8 @@ public class HopitalDemoSpringMvcApplication implements CommandLineRunner {
                 .dateNaissance(new Date())
                 .malade(true)
                 .build();
+
+        System.out.println(patient2.toString());
     }
 
 }
