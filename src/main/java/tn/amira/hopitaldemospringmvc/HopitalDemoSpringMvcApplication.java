@@ -1,14 +1,19 @@
 package tn.amira.hopitaldemospringmvc;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import tn.amira.hopitaldemospringmvc.entites.Patient;
+import tn.amira.hopitaldemospringmvc.repository.PatientRepository;
 
 import java.util.Date;
 
 @SpringBootApplication
 public class HopitalDemoSpringMvcApplication implements CommandLineRunner {
+
+    @Autowired
+    private PatientRepository patientRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(HopitalDemoSpringMvcApplication.class, args);
@@ -16,20 +21,9 @@ public class HopitalDemoSpringMvcApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Patient patient = new Patient();
-        patient.setId(null);
-        patient.setNom("JAD");
-        patient.setDateNaissance(new Date());
-        patient.setMalade(false);
-        patient.setScore(23);
-
-        Patient patient2 = Patient.builder()
-                .nom("Khalil")
-                .dateNaissance(new Date())
-                .malade(true)
-                .build();
-
-        System.out.println(patient2.toString());
+        patientRepository.save(new Patient(null,"khalil",new Date(),false,34));
+        patientRepository.save(new Patient(null,"Jad",new Date(),false,456));
+        patientRepository.save(new Patient(null,"Maryem",new Date(),false,346));
     }
 
 }
